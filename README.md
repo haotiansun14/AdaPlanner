@@ -6,6 +6,7 @@ Large language models (LLMs) have recently demonstrated the potential in acting 
 
 ## Introduction
 ![framework](figures/fig-framework.pdf)
+
 AdaPlanner, a closed-loop planning method with LLM playing two roles -- planner and refiner.
 The planner decomposes the task into manageable sub-goals and predicts environmental feedback for each.
 During execution, the refiner distinguishes and responds to two types of environment feedback -- in-plan feedback is the environmental observation that aligns with the prediction, and out-of-plan feedback is one that deviates from the prediction.
@@ -13,7 +14,9 @@ For in-plan feedback, the refiner can dynamically query the LLM to perform reaso
  This is achieved through a specific action called ask_LLM(), in which the LLM separately parses the observation and obtains information pertinent to subsequent actions.
 For out-of-plan feedback, the refiner proactively revises the entire plan and resumes to solve the current task from an intermediate point.
 AdaPlanner's adaptive closed-loop framework alleviates the need for prior knowledge about the feedback structure and permits the agent to instantly adopt a refined plan rather than restarting from scratch in a reset episode. This leads to a more efficient and adaptive decision-making process. 
-![framework](figures/fig-code_illustration.pdf)
+
+![code](figures/fig-code_illustration.pdf)
+
 AdaPlanner operates solely via prompting, eliminating the need for a dedicated training phase and reducing its computational cost.
 Furthermore, AdaPlanner leverages a code-based prompting for precise planning and refinement. The use of code prompts facilitates task decomposition into sub-goals and mitigates LLM hallucination during the decision-making process.
 AdaPlanner also features a skill discovery process, which accumulates successful experiences to guide future planning. This feature further enhances its long-term planning ability and sample efficiency.
