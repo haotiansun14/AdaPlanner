@@ -42,5 +42,14 @@ pip install -e .
 To run the experiments, please navigate to the corresponding directory and run the Jupyter notebook (`alfworld.ipynb`, `miniwobpp.ipynb`).
 
 ### Citation
-
+```
+@misc{sun2023adaplanner,
+      title={AdaPlanner: Adaptive Planning from Feedback with Language Models}, 
+      author={Haotian Sun and Yuchen Zhuang and Lingkai Kong and Bo Dai and Chao Zhang},
+      year={2023},
+      eprint={2305.16653},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 
