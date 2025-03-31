@@ -424,26 +424,26 @@ def solution(agent, start_from=1):
         assert recep_to_check, f'Error in [Step 1]: recep_to_check should not be empty. {agent.report()}'
 
     if start_from <= 2:
-        print("[Step 2] go to each receptacle in the list until seeing a pen")
+        print("[Step 2] go to each receptacle in the list until seeing a bowl")
         for receptacle in recep_to_check:
             observation = agent.goto(receptacle)
             # check if the receptacle is closed. If so, open it.
             if 'closed' in observation:
                 observation = agent.open_receptacle(receptacle)
             # check if a bowl is in/on the receptacle.
-            if 'pen' in observation:
+            if 'bowl' in observation:
                 break
         # expectation: I should be able to find a receptacle where a bowl is in/on it.
-        assert 'pen' in observation, f'Error in [Step 2]: There is no bowl in/on {recep_to_check}. {agent.report()}'
+        assert 'bowl' in observation, f'Error in [Step 2]: There is no bowl in/on {recep_to_check}. {agent.report()}'
 
     if start_from <= 3:
         print("[Step 3] take the bowl from the receptacle")
         # I need to get the identifier of the bowl so that I can take it. I can ask the assistant to do that.
         answer = ask(f'From the observation, get the identifier of an object. For example, On the cabinet 1, you see a cloth 2, and a toiletpaper 2. The identifier of cloth is 2. Now, {observation} The identifier of the pen? Only Output a single number without any other words. ')
-        found_pen = f'pen {answer}'
-        observation = agent.take(found_pen, receptacle)
+        found_bowl = f'bowl {answer}'
+        observation = agent.take(found_bowl, receptacle)
         # expectation: I should be able to take the bowl from the receptacle.
-        assert agent.holding == found_pen, f'Error in [Step 3]: I cannot take {found_pen} from the {receptacle}. {agent.report()}'
+        assert agent.holding == found_bowl, f'Error in [Step 3]: I cannot take {found_bowl} from the {receptacle}. {agent.report()}'
 
     if start_from <= 4:
         print("[Step 4] get a list of receptacles where a desklamp is likely to appear.")
